@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { createCity } from "../feature/slice";
 import Weather2 from "./Weather2";
+import { useDispatch, useSelector } from "react-redux";
 
 function Weather() {
+  const [input, setInput] = useState();
+  const dispatch = useDispatch();
+  const select = useSelector((c) => {
+    return c.app.value;
+  });
+  console.log(select, "finally");
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+    console.log(e.target.value, "input data");
+  };
+  const getData = () => {
+    dispatch(createCity(input));
+  };
   return (
     <div className="main">
       <div className="main-left">
         <div className="title-input">
-          <input type="text" className="text-input" placeholder="Search..." />
-          <i className="fa fa-search icon"></i>
+          <input
+            type="text"
+            className="text-input"
+            value={input}
+            onChange={handleChange}
+            placeholder="Search..."
+          />
+          <i className="fa fa-search icon" onClick={getData}></i>
 
           {/* <i className="fa-solid fa-user"></i> */}
           {/* <button type="button" className="btn">
@@ -41,12 +63,12 @@ function Weather() {
       {/* end of div main left */}
       <div className="main-right">
         <div className="nav-item">
-          <ul className="unordered-list">
+          {/* <ul className="unordered-list">
             <li>Today</li>
             <li>Week</li>
             <li>cc</li>
             <li>0f</li>
-          </ul>
+          </ul> */}
         </div>
         <Weather2 />
       </div>
