@@ -65,7 +65,7 @@
   /* margin-left: 4px; */
 }
 .main-right {
-  background-color: rgb(190, 191, 192);
+  background-color: #cccdcd;
 
   width: 80vw;
 }
@@ -91,6 +91,11 @@
 h1 {
   font-size: 38px;
 }
+.para {
+  text-align: left;
+  font-size: 13px;
+  padding-top: 10px;
+}
 sup {
   font-size: 23px;
 }
@@ -107,12 +112,28 @@ sup {
   display: flex;
   gap: 10px;
 }
+.heading-text p {
+  /* color: red; */
+  font-size: 11px;
+  padding-top: 4px;
+}
 .percentage {
   /* padding: 20px 20px 10px 10px; */
   font-weight: 400;
   font-size: smaller;
   display: flex;
   gap: 10px;
+}
+.percentage p {
+  font-size: 11px;
+  padding-top: 4px;
+}
+.heading-text i {
+  /* color: #4582db; */
+  padding-top: 4px;
+}
+.percentage i {
+  padding-top: 4px;
 }
 .footer {
   position: absolute;
@@ -122,4 +143,11 @@ sup {
   height: 10px; */
   display: flex;
   gap: 10px;
+}
+.map {
+  padding: 5px;
+}
+.footer p {
+  font-size: 13px;
+  padding-top: 7px;
 }
