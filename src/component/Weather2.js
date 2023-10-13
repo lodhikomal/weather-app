@@ -1,6 +1,8 @@
 import React from "react";
 import "./Weather2Style.css";
-function Weather2() {
+
+function Weather2(props) {
+  // console.log(props.value?.weather?.wind, "check");
   return (
     <div>
       <div className="wrapper">
@@ -10,32 +12,33 @@ function Weather2() {
         <div className="container">
           <div>
             <span>uv Index</span>
-            <p>0</p>
+            <p>N/A</p>
             <span>low</span>
           </div>
           <div>
-            <span>wind status</span>
-            <p>0</p>
-            <span>km/h</span>
+            <span>wind</span>
+            <p>{props.value?.weather?.wind?.speed}</p>
+            <span>{props.value?.weather?.wind?.deg}</span>
           </div>
           <div>
             <span>Sunrise & Sunset</span>
             <p>0</p>
-            <span>0</span>
+            <span>{props.value?.weather?.sys?.sunrise}</span>
+            <span>{props.value?.weather?.sys?.sunset}</span>
           </div>
           <div>
             <span>Humidity</span>
-            <p>0</p>
+            <p>N/A</p>
             <span>Normal</span>
           </div>
           <div>
             <span>visibility</span>
-            <p>0</p>
+            <p>{props.value?.weather?.visibility}</p>
             <span>Normal</span>
           </div>
           <div>
             <span>Air Quality</span>
-            <p>0</p>
+            <p>N/A</p>
             <span>Normal</span>
           </div>
         </div>

@@ -6,18 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 function Weather() {
   const [input, setInput] = useState();
   const dispatch = useDispatch();
-  const select = useSelector((c) => {
-    return c.app.value;
+  const weatherData = useSelector((state) => {
+    return state.app;
   });
-  console.log(select, "finally");
+  console.log(weatherData, "finally");
+  // console.log(weatherData?.sys?.timezone, "get");
 
   const handleChange = (e) => {
     setInput(e.target.value);
-    console.log(e.target.value, "input data");
+    // console.log(e.target.value, "input data");
   };
   const getData = () => {
     dispatch(createCity(input));
   };
+  const date = new Date();
   return (
     <div className="main">
       <div className="main-left">
@@ -44,9 +46,10 @@ function Weather() {
         </div>
         <div className="heading">
           <h1>
-            0<sup>0c</sup>
+            {weatherData?.weather?.main?.temp}
+            <sup>0c</sup>
           </h1>
-          <p className="para">Sunday,10:35</p>
+          <p className="para"></p>
         </div>
         <hr></hr>
         <div className="head-style">
@@ -70,11 +73,11 @@ function Weather() {
             <li>0f</li>
           </ul> */}
         </div>
-        <Weather2 />
+        <Weather2 value={weatherData} />
       </div>
       <div className="footer">
         <i class="fa fa-map-marker map" aria-hidden="true"></i>
-        <p>location</p>
+        <p>{weatherData?.weather?.name}</p>
       </div>
     </div>
   );

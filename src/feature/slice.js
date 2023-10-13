@@ -9,7 +9,7 @@ export const createCity = createAsyncThunk("city", async (data) => {
 export const slice = createSlice({
   name: "userDetails",
   initialState: {
-    users: [],
+    weather: {},
     loading: false,
     error: null,
   },
@@ -20,13 +20,14 @@ export const slice = createSlice({
       })
       .addCase(createCity.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log(action.payload, "checked");
-        state.users = action.payload;
+        // console.log(action.payload, "checked");
+        state.weather = action.payload;
       })
-      .addCase(createCity.rejected, (state, action) => {
+      .addCase(createCity.rejected, (state) => {
         state.status = "failed";
-        state.users = action.payload;
+        // state.weather = action.payload;
       });
   },
 });
+
 export default slice.reducer;
