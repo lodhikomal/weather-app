@@ -41,12 +41,12 @@ h3 {
 }
 
 p {
-  text-align: center;
-  font-size: 20px;
+  text-align: left;
+  font-size: 15px;
   font-weight: 300;
 }
 .container div span {
-  padding: 10px;
+  /* padding: 10px; */
   color: #c8c9ca;
   font-size: 13px;
 }
