@@ -1,10 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 export const createCity = createAsyncThunk("city", async (data) => {
-  let res = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${data}&appid=${process.env.REACT_APP_WEATHERAPI_KEY}`
-  );
-  return res.data;
+  try {
+    let res = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${data}&appid=${process.env.REACT_APP_WEATHERAPI_KEY}&units=metric`
+    );
+    return res.data;
+  } catch (error) {
+    return error.message;
+  }
 });
 export const slice = createSlice({
   name: "userDetails",
@@ -12,6 +16,7 @@ export const slice = createSlice({
     weather: {},
     loading: false,
     error: null,
+    status: "",
   },
   extraReducers: (builder) => {
     builder
@@ -19,13 +24,15 @@ export const slice = createSlice({
         state.status = "loading";
       })
       .addCase(createCity.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        // console.log(action.payload, "checked");
-        state.weather = action.payload;
+        if (action.payload == "Request failed with status code 404") {
+          state.status = action.payload;
+        } else {
+          state.status = "success";
+          state.weather = action.payload;
+        }
       })
-      .addCase(createCity.rejected, (state) => {
-        state.status = "failed";
-        // state.weather = action.payload;
+      .addCase(createCity.rejected, (state, action) => {
+        console.log(action.payload, " error");
       });
   },
 });

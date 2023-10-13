@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createCity } from "../feature/slice";
 import Weather2 from "./Weather2";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 function Weather() {
   const [input, setInput] = useState();
@@ -19,7 +20,14 @@ function Weather() {
   const getData = () => {
     dispatch(createCity(input));
   };
+
   const date = new Date();
+  useEffect(() => {
+    if (weatherData.status !== "loading") {
+      toast.success(weatherData.status);
+    }
+  }, [weatherData.status]);
+
   return (
     <div className="main">
       <div className="main-left">
